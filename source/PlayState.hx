@@ -1,10 +1,10 @@
 package;
 
+import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
-import Hero;
 import flixel.FlxState;
-import haxe.display.Protocol.HaxeResponseErrorData;
+import ScreensaverHero;
 
 class PlayState extends FlxState
 {
@@ -12,9 +12,17 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		var myHero = new Hero(300, 300);
 		var helloWorld = new FlxText(240, 150, 0, "Hello world!", 15);
 		var textColor = new FlxColor(0xaa3d7b);
+
+		var myScreensavers = new Array();
+
+		var numScreensavers:Int = 10;
+		for (i in 0...numScreensavers)
+		{
+			myScreensavers.push(new ScreensaverHero(320, 240));
+			add(myScreensavers[i]);
+		}
 
 		helloWorld.setFormat("", 30, textColor);
 
