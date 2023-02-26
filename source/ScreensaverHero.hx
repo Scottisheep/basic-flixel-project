@@ -1,6 +1,5 @@
 package;
 
-import haxe.iterators.StringKeyValueIteratorUnicode;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRandom;
 import flixel.util.FlxColor;

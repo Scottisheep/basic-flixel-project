@@ -26,7 +26,6 @@ class PlayState extends FlxState
 
 		helloWorld.setFormat("", 30, textColor);
 
-		add(myHero);
 		add(helloWorld);
 	}
 
