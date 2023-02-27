@@ -20,7 +20,7 @@ class ScreensaverHero extends FlxSprite
 	static var heroWidth = 20;
 	static var heroHeight = 20;
 
-	static var screenWidth(default, never):Int = 360;
+	static var screenWidth(default, never):Int = 340;
 	static var screenHeight(default, never):Int = 480;
 
 	override public function new(x:Float = 0, y:Float = 0)
