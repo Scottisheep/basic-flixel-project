@@ -12,21 +12,25 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		var movableHero = new ControllableHero(320, 240);
+		var heroesStartingX = 320;
+		var heroesStartingY = 240;
+		var movableHero = new ControllableHero(heroesStartingX, heroesStartingY);
 
-		var helloWorld = new FlxText(240, 150, 0, "Hello world!", 15);
+		var textX = 240;
+		var textY = 150;
+		var textSize = 15;
+		var helloWorld = new FlxText(textX, textY, 0, "Hello world!", textSize);
 		var textColor = new FlxColor(0xaa3d7b);
+		helloWorld.setFormat("", textSize, textColor);
 
 		var myScreensavers = new Array();
-
 		var numScreensavers:Int = 20;
+
 		for (i in 0...numScreensavers)
 		{
-			myScreensavers.push(new ScreensaverHero(320, 240));
+			myScreensavers.push(new ScreensaverHero(heroesStartingX, heroesStartingY));
 			add(myScreensavers[i]);
 		}
-
-		helloWorld.setFormat("", 30, textColor);
 
 		add(helloWorld);
 		add(movableHero);

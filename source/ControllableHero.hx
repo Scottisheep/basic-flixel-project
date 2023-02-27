@@ -8,13 +8,20 @@ import flixel.FlxG;
 class ControllableHero extends FlxSprite
 {
 	var directionalAccel = new Array();
+	var accelOnInput:Int = 150;
+	var decelMultiplier:Float = 1.5;
+	var playerMaxVel = 200;
+
+	static var playerWidth:Int = 15;
+	static var playerHeight:Int = 15;
+	static var playerColor:FlxColor = 0xFFFFFFFF;
 
 	override public function new(x, y)
 	{
 		super(x, y);
-		maxVelocity = FlxPoint.get(200, 200);
+		maxVelocity = FlxPoint.get(playerMaxVel, playerMaxVel);
 		directionalAccel.resize(4);
-		makeGraphic(15, 15, FlxColor.WHITE);
+		makeGraphic(playerWidth, playerHeight, playerColor);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -23,7 +30,7 @@ class ControllableHero extends FlxSprite
 
 		if (FlxG.keys.anyPressed([UP, W]))
 		{
-			directionalAccel[0] = 150;
+			directionalAccel[0] = accelOnInput;
 		}
 		else
 		{
@@ -32,7 +39,7 @@ class ControllableHero extends FlxSprite
 
 		if (FlxG.keys.anyPressed([LEFT, A]))
 		{
-			directionalAccel[1] = 150;
+			directionalAccel[1] = accelOnInput;
 		}
 		else
 		{
@@ -41,7 +48,7 @@ class ControllableHero extends FlxSprite
 
 		if (FlxG.keys.anyPressed([DOWN, S]))
 		{
-			directionalAccel[2] = 150;
+			directionalAccel[2] = accelOnInput;
 		}
 		else
 		{
@@ -50,7 +57,7 @@ class ControllableHero extends FlxSprite
 
 		if (FlxG.keys.anyPressed([RIGHT, D]))
 		{
-			directionalAccel[3] = 150;
+			directionalAccel[3] = accelOnInput;
 		}
 		else
 		{
@@ -62,19 +69,19 @@ class ControllableHero extends FlxSprite
 
 		if (velocity.x > 0)
 		{
-			drag.x = 1.5 * velocity.x;
+			drag.x = decelMultiplier * velocity.x;
 		}
 		else
 		{
-			drag.x = -1.5 * velocity.x;
+			drag.x = -decelMultiplier * velocity.x;
 		}
 		if (velocity.y > 0)
 		{
-			drag.y = 1.5 * velocity.y;
+			drag.y = decelMultiplier * velocity.y;
 		}
 		else
 		{
-			drag.y = -1.5 * velocity.y;
+			drag.y = -decelMultiplier * velocity.y;
 		}
 	}
 }

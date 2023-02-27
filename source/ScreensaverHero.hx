@@ -14,42 +14,50 @@ class ScreensaverHero extends FlxSprite
 	var black:Float = 0;
 	var startingPos = new FlxPoint(0, 0);
 
+	var maxVel = 150;
+	var minVel = -150;
+
+	static var heroWidth = 20;
+	static var heroHeight = 20;
+
+	static var screenWidth(default, never):Int = 360;
+	static var screenHeight(default, never):Int = 480;
+
 	override public function new(x:Float = 0, y:Float = 0)
 	{
 		super(x, y);
 		moves = true;
-		makeGraphic(20, 20);
-		velocity = new FlxPoint(rand.float(-200, 200), rand.float(-200, 200));
+		makeGraphic(heroWidth, heroHeight);
+		velocity = new FlxPoint(rand.float(minVel, maxVel), rand.float(minVel, maxVel));
 		startingPos.x = x;
 		startingPos.y = y;
 		solid = true;
-		elasticity = 3;
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		if (y < 240)
+		if (y < (screenHeight / 2))
 		{
-			cyan = 1 - (y / 240);
+			cyan = 1 - (y / (screenHeight / 2));
 			yellow = 0;
 		}
 		else
 		{
 			cyan = 0;
-			yellow = (y / 240) - 1;
+			yellow = (y / (screenHeight / 2)) - 1;
 		}
 
-		if (x < 240)
+		if (x < (screenWidth / 2))
 		{
-			magenta = 1 - (x / 240);
+			magenta = 1 - (x / (screenWidth / 2));
 			black = 0;
 		}
 		else
 		{
 			magenta = 0;
-			black = (x / 240) - 1;
+			black = (x / (screenWidth / 2)) - 1;
 		}
 
 		color = FlxColor.fromCMYK(cyan, magenta, yellow, black);
